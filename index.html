@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HOWLADER Rising Stars Program — Md Rezaul Islam, PhD</title>
+  <meta name="description" content="Empowering Bangladesh's brightest students to shape the future of Neuroscience" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #0f0e0d;
+      --paper: #f5f1eb;
+      --cream: #ede8df;
+      --gold: #b8945a;
+      --gold-light: #d4b07a;
+      --muted: #6b6560;
+      --rule: #d6cfc4;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(245,241,235,0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--rule);
+      padding: 0 clamp(1.5rem, 5vw, 4rem);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    .nav-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active { color: var(--ink); }
+
+    .nav-links a.active { color: var(--gold); }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: var(--ink);
+      transition: all 0.3s;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px clamp(1.5rem, 8vw, 8rem) 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 30%, rgba(184,148,90,0.08) 0%, transparent 70%),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Ccircle cx='1' cy='1' r='0.5' fill='%23b8945a' opacity='0.15'/%3E%3C/svg%3E");
+      pointer-events: none;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.8s ease both;
+    }
+
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.8rem, 7vw, 6rem);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      max-width: 900px;
+      animation: fadeUp 0.8s 0.15s ease both;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .hero-subtitle {
+      margin-top: 1.8rem;
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: var(--muted);
+      max-width: 560px;
+      font-weight: 300;
+      animation: fadeUp 0.8s 0.3s ease both;
+    }
+
+    .hero-rule {
+      width: 60px;
+      height: 1px;
+      background: var(--gold);
+      margin: 2.5rem auto 0;
+      animation: fadeUp 0.8s 0.45s ease both;
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--muted);
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      animation: fadeUp 1s 1s ease both;
+    }
+
+    .hero-scroll::after {
+      content: '';
+      display: block;
+      width: 1px;
+      height: 40px;
+      background: var(--gold);
+      animation: scrollPulse 2s ease infinite;
+    }
+
+    /* ── BRAIN IMAGE SECTION ── */
+    .brain-section {
+      padding: 0 clamp(1.5rem, 8vw, 8rem) 6rem;
+      display: flex;
+      justify-content: center;
+    }
+
+    .brain-frame {
+      width: 100%;
+      max-width: 900px;
+      aspect-ratio: 16/7;
+      background: linear-gradient(135deg, #1a1814 0%, #2d2720 50%, #1a1814 100%);
+      border-radius: 2px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 40px 80px rgba(0,0,0,0.15);
+    }
+
+    .brain-frame::after {
+      content: 'NEUROSCIENCE RESEARCH';
+      position: absolute;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      color: rgba(184,148,90,0.6);
+    }
+
+    .brain-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    /* SVG brain illustration */
+    .brain-svg {
+      width: 220px;
+      opacity: 0.6;
+    }
+
+    .brain-label {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+    }
+
+    /* ── SECTIONS ── */
+    .section {
+      padding: 5rem clamp(1.5rem, 8vw, 8rem);
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.2rem;
+    }
+
+    .section-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 2rem;
+    }
+
+    /* ── ABOUT GRID ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .about-body p {
+      color: var(--muted);
+      margin-bottom: 1.2rem;
+      font-size: 1rem;
+      line-height: 1.8;
+    }
+
+    .about-body strong {
+      color: var(--ink);
+      font-weight: 500;
+    }
+
+    .about-sidebar {
+      border-left: 1px solid var(--rule);
+      padding-left: 3rem;
+    }
+
+    /* ── DISCIPLINES ── */
+    .disciplines-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 1.2rem;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    .disciplines-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .disciplines-list li {
+      font-size: 0.85rem;
+      color: var(--muted);
+      padding: 0.6rem 1rem;
+      border: 1px solid var(--rule);
+      border-radius: 2px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .disciplines-list li:hover {
+      border-color: var(--gold);
+      color: var(--ink);
+    }
+
+    /* ── BENEFITS ── */
+    .benefits-section {
+      background: var(--cream);
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+    }
+
+    .benefit-card {
+      padding: 2.5rem;
+      border-right: 1px solid var(--rule);
+      transition: background 0.2s;
+    }
+
+    .benefit-card:last-child { border-right: none; }
+
+    .benefit-card:hover { background: rgba(184,148,90,0.05); }
+
+    .benefit-icon {
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+    }
+
+    .benefit-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 0.7rem;
+    }
+
+    .benefit-desc {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* ── FELLOWS ── */
+    .fellows-section {
+      border-top: 1px solid var(--rule);
+    }
+
+    .fellows-year {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+
+    .fellows-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      margin-top: 3rem;
+    }
+
+    .fellow-card {
+      position: relative;
+      padding: 2.5rem;
+      border: 1px solid var(--rule);
+      border-radius: 2px;
+      transition: box-shadow 0.3s, transform 0.3s;
+    }
+
+    .fellow-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px;
+      height: 100%;
+      background: var(--gold);
+      transform: scaleY(0);
+      transform-origin: top;
+      transition: transform 0.3s;
+    }
+
+    .fellow-card:hover {
+      box-shadow: 0 20px 50px rgba(0,0,0,0.08);
+      transform: translateY(-3px);
+    }
+
+    .fellow-card:hover::before { transform: scaleY(1); }
+
+    .fellow-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.5rem;
+      font-weight: 300;
+      color: var(--rule);
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+
+    .fellow-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      font-weight: 600;
+      font-style: italic;
+      margin-bottom: 0.4rem;
+      color: var(--ink);
+    }
+
+    .fellow-affiliation {
+      font-size: 0.8rem;
+      letter-spacing: 0.05em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+      font-weight: 500;
+    }
+
+    .fellow-bio {
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    /* ── CONTACT ── */
+    .contact-section {
+      background: var(--ink);
+      color: var(--paper);
+      padding: 5rem clamp(1.5rem, 8vw, 8rem);
+      text-align: center;
+    }
+
+    .contact-section .section-label { color: var(--gold-light); }
+
+    .contact-section .section-heading { color: var(--paper); }
+
+    .contact-body {
+      color: rgba(245,241,235,0.6);
+      font-size: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .contact-email {
+      display: inline-block;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      color: var(--gold-light);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(184,148,90,0.4);
+      padding-bottom: 3px;
+      transition: border-color 0.2s;
+    }
+
+    .contact-email:hover { border-color: var(--gold-light); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--ink);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding: 2rem clamp(1.5rem, 8vw, 8rem);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.75rem;
+      color: rgba(245,241,235,0.35);
+    }
+
+    .footer-brand {
+      font-family: 'Cormorant Garamond', serif;
+      color: rgba(245,241,235,0.5);
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: var(--rule);
+      margin: 0;
+    }
+
+    /* ── AMOUNT HIGHLIGHT ── */
+    .amount-badge {
+      display: inline-block;
+      background: var(--gold);
+      color: #fff;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      padding: 0.3rem 1rem;
+      border-radius: 2px;
+      margin: 0.5rem 0 1rem;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 1; transform: scaleY(1); transform-origin: top; }
+      50% { opacity: 0.4; transform: scaleY(0.6); transform-origin: top; }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 64px; left: 0; right: 0;
+        background: var(--paper);
+        border-bottom: 1px solid var(--rule);
+        padding: 1.5rem 2rem;
+        gap: 1.2rem;
+      }
+      .hamburger { display: flex; }
+      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .about-sidebar { border-left: none; border-top: 1px solid var(--rule); padding-left: 0; padding-top: 2rem; }
+      .benefits-grid { grid-template-columns: 1fr; }
+      .benefit-card { border-right: none; border-bottom: 1px solid var(--rule); }
+      .benefit-card:last-child { border-bottom: none; }
+      .fellows-grid { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-brand">Md Rezaul Islam, PhD</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#">About</a></li>
+      <li><a href="#">CV</a></li>
+      <li><a href="#">Publications</a></li>
+      <li><a href="#">News</a></li>
+      <li><a href="#">Media Coverage</a></li>
+      <li><a href="#" class="active">Rising Stars</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <p class="hero-eyebrow">Howlader Rising Stars Program · 2025</p>
+    <h1 class="hero-title">
+      Empowering <em>Bangladesh's</em><br>Brightest Minds in<br>Neuroscience
+    </h1>
+    <p class="hero-subtitle">A fellowship for the next generation of neuroscientists, built on mentorship, research, and ambition.</p>
+    <div class="hero-rule"></div>
+    <div class="hero-scroll">Scroll</div>
+  </section>
+
+  <!-- BRAIN ILLUSTRATION -->
+  <div class="brain-section">
+    <div class="brain-frame">
+      <div class="brain-overlay">
+        <svg class="brain-svg" viewBox="0 0 200 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Stylised brain outline -->
+          <ellipse cx="100" cy="80" rx="70" ry="55" stroke="#b8945a" stroke-width="0.8" opacity="0.5"/>
+          <path d="M50 70 C40 50 60 35 80 45 C85 30 115 28 120 45 C140 35 165 55 150 75 C165 90 155 115 135 110 C130 128 110 132 100 120 C90 134 68 130 62 112 C42 110 35 88 50 70Z" stroke="#b8945a" stroke-width="1" fill="none" opacity="0.7"/>
+          <!-- Neural network lines -->
+          <line x1="100" y1="60" x2="80" y2="80" stroke="#d4b07a" stroke-width="0.5" opacity="0.4"/>
+          <line x1="100" y1="60" x2="120" y2="75" stroke="#d4b07a" stroke-width="0.5" opacity="0.4"/>
+          <line x1="80" y1="80" x2="90" y2="100" stroke="#d4b07a" stroke-width="0.5" opacity="0.4"/>
+          <line x1="120" y1="75" x2="110" y2="98" stroke="#d4b07a" stroke-width="0.5" opacity="0.4"/>
+          <line x1="90" y1="100" x2="110" y2="98" stroke="#d4b07a" stroke-width="0.5" opacity="0.4"/>
+          <line x1="65" y1="70" x2="80" y2="80" stroke="#d4b07a" stroke-width="0.5" opacity="0.3"/>
+          <line x1="135" y1="68" x2="120" y2="75" stroke="#d4b07a" stroke-width="0.5" opacity="0.3"/>
+          <!-- Nodes -->
+          <circle cx="100" cy="60" r="2.5" fill="#b8945a" opacity="0.8"/>
+          <circle cx="80" cy="80" r="2" fill="#b8945a" opacity="0.7"/>
+          <circle cx="120" cy="75" r="2" fill="#b8945a" opacity="0.7"/>
+          <circle cx="90" cy="100" r="2" fill="#b8945a" opacity="0.6"/>
+          <circle cx="110" cy="98" r="2" fill="#b8945a" opacity="0.6"/>
+          <circle cx="65" cy="70" r="1.5" fill="#b8945a" opacity="0.5"/>
+          <circle cx="135" cy="68" r="1.5" fill="#b8945a" opacity="0.5"/>
+        </svg>
+        <span class="brain-label">Mapping the Human Brain</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section class="section" id="about">
+    <div class="reveal">
+      <p class="section-label">About the Fellowship</p>
+      <h2 class="section-heading">HOWLADER Rising Stars<br>Fellowship 2025</h2>
+    </div>
+    <div class="about-grid reveal">
+      <div class="about-body">
+        <p>
+          The <strong>HOWLADER Rising Stars Fellowship 2025</strong> is a new initiative that invites applications exclusively from <strong>third- and fourth-year (or equivalent semester)</strong> undergraduate students in Bangladesh who aspire to build careers in <strong>Neuroscience</strong>.
+        </p>
+        <p>
+          This fellowship offers monthly support of <span class="amount-badge">4,000 BDT</span> for one year to two selected candidates, empowering fellows to focus on academic growth, explore research opportunities, and build a strong foundation for their future careers in neuroscience.
+        </p>
+        <p>
+          Fellows join a community of ambitious students preparing for admission to leading PhD programs in Neuroscience and related fields worldwide.
+        </p>
+        <p>
+          In addition to financial support, fellows receive <strong>personalised mentorship</strong> and training on preparing strong graduate applications, guidance on academic and career planning, and opportunities to contribute to research projects that may lead to publications in reputed journals.
+        </p>
+      </div>
+      <div class="about-sidebar">
+        <p class="disciplines-heading">Open to students in:</p>
+        <ul class="disciplines-list">
+          <li>Computer Science</li>
+          <li>Chemical Engineering</li>
+          <li>Materials Science Engineering</li>
+          <li>Genetic Engineering</li>
+          <li>Biomedical Engineering</li>
+          <li>Biochemistry</li>
+          <li>Microbiology</li>
+          <li>Other related biological &amp; biomedical sciences</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- BENEFITS -->
+  <section class="benefits-section">
+    <div class="section">
+      <p class="section-label reveal">What Fellows Receive</p>
+      <h2 class="section-heading reveal">A Comprehensive<br>Support System</h2>
+      <div class="benefits-grid">
+        <div class="benefit-card reveal">
+          <div class="benefit-icon">💰</div>
+          <h3 class="benefit-title">Financial Support</h3>
+          <p class="benefit-desc">Monthly stipend of 4,000 BDT for one full year — enabling you to invest time in research and academics without financial burden.</p>
+        </div>
+        <div class="benefit-card reveal">
+          <div class="benefit-icon">🧭</div>
+          <h3 class="benefit-title">Personalised Mentorship</h3>
+          <p class="benefit-desc">One-on-one guidance on graduate school applications, career planning, and research direction from an active neuroscientist.</p>
+        </div>
+        <div class="benefit-card reveal">
+          <div class="benefit-icon">📄</div>
+          <h3 class="benefit-title">Research Opportunities</h3>
+          <p class="benefit-desc">Contribute to ongoing research projects with the potential to co-author publications in internationally reputed journals.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- FELLOWS -->
+  <section class="section fellows-section" id="fellows">
+    <div class="reveal">
+      <p class="fellows-year">Class of 2025</p>
+      <p class="section-label">Profiles of the Fellows</p>
+      <h2 class="section-heading">Meet the 2025<br>Rising Stars</h2>
+    </div>
+    <div class="fellows-grid">
+
+      <div class="fellow-card reveal">
+        <div class="fellow-number">01</div>
+        <h3 class="fellow-name">Shahriar Rafat</h3>
+        <p class="fellow-affiliation">Dept. of Genetic Engineering &amp; Biotechnology · Dhaka University</p>
+        <p class="fellow-bio">
+          Shahriar is an undergraduate student with a deepening interest in neuroscience and its molecular foundations. Through his experiences at CARS and the GEB Lab, he has built a strong grounding in cell culture and molecular techniques. He is inspired to explore the complexities of the brain and hopes to contribute to thoughtful, meaningful progress in the field.
+        </p>
+      </div>
+
+      <div class="fellow-card reveal">
+        <div class="fellow-number">02</div>
+        <h3 class="fellow-name">Nuzhat Aisha Shaikh</h3>
+        <p class="fellow-affiliation">Dept. of Biomedical Engineering · BUET</p>
+        <p class="fellow-bio">
+          Nuzhat is an undergraduate student who, from her childhood, has always been curious about learning anything new. Now, as an undergraduate student, she is translating her lifelong passion for research into practical applications for human health. She aims to see herself in a place where her skills to create technologies and solutions will make a tangible difference in people's lives.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact-section" id="contact">
+    <p class="section-label">Get in Touch</p>
+    <h2 class="section-heading reveal">Questions about<br>the Fellowship?</h2>
+    <p class="contact-body">For any questions related to the fellowship, direct your queries to:</p>
+    <a href="mailto:mrezaulislam33@gmail.com" class="contact-email">mrezaulislam33@gmail.com</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-brand">Md Rezaul Islam, PhD</span>
+    <span>© 2025 HOWLADER Rising Stars Program. All rights reserved.</span>
+  </footer>
+
+  <script>
+    // Hamburger menu
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(r => observer.observe(r));
+  </script>
+</body>
+</html>
